@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random Agent Baseline – 16-831</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            line-height: 1.6;
+            color: #222;
+        }
+        h1, h2, h3 {
+            color: #1a1a1a;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f5f5f5;
+        }
+        video {
+            width: 100%;
+            max-width: 700px;
+            margin: 10px 0 30px 0;
+            border: 1px solid #ccc;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Random Policy Baseline Results</h1>
+
+<div class="section">
+    <h2>Overview</h2>
+    <p>
+        This website presents baseline results for a random policy on robotic manipulation
+        tasks used in the 16-831 course project. The purpose of this baseline is to illustrate
+        the difficulty of the environments and provide a reference point for subsequent
+        reinforcement learning experiments.
+    </p>
+    <p>
+        We evaluate a random agent that samples actions uniformly from the action space
+        on three manipulation tasks simulated using the Franka Panda robot in the
+        <strong>panda-gym</strong> environment.
+    </p>
+</div>
+
+<div class="section">
+    <h2>Experimental Setup</h2>
+    <ul>
+        <li><strong>Environments:</strong> PandaReach, PandaPush, PandaPickAndPlace (panda-gym)</li>
+        <li><strong>Policy:</strong> Uniformly random actions</li>
+        <li><strong>Runs:</strong> 3 independent runs per task</li>
+        <li><strong>Episodes per run:</strong>20</li>
+        <li><strong>Metric:</strong> Mean episodic return</li>
+    </ul>
+    <p>
+        Task success is determined using the environment’s built-in threshold-based success
+        condition. This metric is used consistently across all experiments.
+    </p>
+</div>
+
+<div class="section">
+    <h2>Quantitative Results</h2>
+
+    <table>
+        <tr>
+            <th>Task</th>
+            <th>Run 1 Mean Return</th>
+            <th>Run 2 Mean Return</th>
+            <th>Run 3 Mean Return</th>
+        </tr>
+        <tr>
+            <td>PandaReach</td>
+            <td>-7.371</td>
+            <td>-9.279</td>
+            <td>-7.636</td>
+        </tr>
+        <tr>
+            <td>PandaPush</td>
+            <td>-8.545</td>
+            <td>-8.651</td>
+            <td>-8.566</td>
+        </tr>
+        <tr>
+            <td>PandaPickAndPlace</td>
+            <td>-8.726</td>
+            <td>-8.366</td>
+            <td>-10.878</td>
+        </tr>
+    </table>
+
+    <p>
+        The random agent achieves low mean episodic returns across all tasks, with occasional
+        success in simpler tasks such as reaching and near-zero success in more complex
+        manipulation tasks. These results highlight the non-triviality of the environments.
+    </p>
+</div>
+
+<div class="section">
+    <h2>Random Agent Videos</h2>
+
+    <h3>PandaReach</h3>
+    <video controls>
+        <source src="ep10-episode-0_reach.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <video controls>
+        <source src="ep50-episode-0_reach.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <h3>PandaPush</h3>
+    <video controls>
+        <source src="ep20-episode-0_push.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <video controls>
+        <source src="ep30-episode-0_push.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <h3>PandaPickAndPlace</h3>
+    <video controls>
+        <source src="ep50-episode-0_pp.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <video controls>
+        <source src="ep30-episode-0_pp.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+</body>
+</html>
