@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>16-831 — Random Baseline &amp; RL Experiments</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f4f6f9;
+            --surface: #ffffff;
+            --text: #1c2333;
+            --muted: #5c6578;
+            --accent: #2563eb;
+            --accent-soft: #dbeafe;
+            --border: #e2e8f0;
+            --shadow: 0 1px 3px rgba(28, 35, 51, 0.08);
+            --shadow-lg: 0 12px 40px rgba(28, 35, 51, 0.1);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --max: 1040px;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+            font-size: 1.0625rem;
+            line-height: 1.65;
+            color: var(--text);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            background: var(--accent);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            z-index: 100;
+        }
+        .skip-link:focus {
+            left: 1rem;
+            top: 1rem;
+        }
+
+        .site-header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+            color: #f1f5f9;
+            padding: 2.5rem 1.5rem 3rem;
+            margin-bottom: 0;
+        }
+
+        .site-header-inner {
+            max-width: var(--max);
+            margin: 0 auto;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #93c5fd;
+            margin-bottom: 0.75rem;
+        }
+
+        .site-header h1 {
+            margin: 0 0 0.5rem;
+            font-size: clamp(1.75rem, 4vw, 2.25rem);
+            font-weight: 700;
+            line-height: 1.2;
+            color: #fff;
+        }
+
+        .site-header p {
+            margin: 0;
+            max-width: 42rem;
+            color: #cbd5e1;
+            font-size: 1rem;
+        }
+
+        .nav-wrap {
+            max-width: var(--max);
+            margin: -1.25rem auto 2rem;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .toc {
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            padding: 1rem 1.25rem;
+        }
+
+        .toc-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--muted);
+            margin: 0 0 0.75rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.25rem;
+        }
+
+        .toc a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 1.5rem 4rem;
+        }
+
+        .section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.75rem 1.75rem 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .section h2 {
+            margin: 0 0 1rem;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--text);
+            padding-bottom: 0.65rem;
+            border-bottom: 2px solid var(--accent-soft);
+        }
+
+        .section h3 {
+            margin: 1.5rem 0 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .section p {
+            margin: 0 0 1rem;
+            color: #374151;
+        }
+
+        .section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .section ul {
+            margin: 0 0 1rem;
+            padding-left: 1.25rem;
+            color: #374151;
+        }
+
+        .section li {
+            margin-bottom: 0.35rem;
+        }
+
+        .insight {
+            margin-top: 1.25rem;
+            padding: 1rem 1.15rem;
+            background: #f8fafc;
+            border-left: 4px solid var(--accent);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            font-style: italic;
+            color: #475569;
+        }
+
+        .insight:last-child {
+            margin-bottom: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0 0;
+            font-size: 0.95rem;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 100%);
+            font-weight: 600;
+            color: #334155;
+            font-family: "IBM Plex Mono", ui-monospace, monospace;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #fafbfc;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody td:first-child {
+            font-weight: 600;
+            text-align: left;
+            color: #1e293b;
+        }
+
+        tbody td:not(:first-child) {
+            font-family: "IBM Plex Mono", ui-monospace, monospace;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .task-grid,
+        .dataset-video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+            align-items: start;
+        }
+
+        .task-title {
+            grid-column: 1 / -1;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.25rem;
+        }
+
+        .task-title:first-child {
+            margin-top: 0.5rem;
+        }
+
+        .task-grid video,
+        .task-grid img,
+        .dataset-video-grid video {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            background: #0f172a;
+        }
+
+        .dataset-video-grid {
+            margin-top: 1.25rem;
+        }
+
+        @media (max-width: 768px) {
+            .task-grid,
+            .dataset-video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .task-title {
+                grid-column: 1;
+            }
+
+            .toc ul {
+                flex-direction: column;
+                gap: 0.35rem;
+            }
+
+            th, td {
+                padding: 0.5rem 0.4rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 520px) {
+            table {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <div class="site-header-inner">
+            <span class="badge">16-831 · Course project</span>
+            <h1>Robotic manipulation — baselines &amp; RL results</h1>
+            <p>Random policy reference, dataset notes, and PPO / SAC experiments with optional HER and data cleaning.</p>
+        </div>
+    </header>
+
+    <div class="nav-wrap">
+        <nav class="toc" aria-label="Page sections">
+            <p class="toc-title">On this page</p>
+            <ul>
+                <li><a href="#baseline">Random baseline</a></li>
+                <li><a href="#dataset">Dataset issues</a></li>
+                <li><a href="#exp1">Exp 1 — PPO dense</a></li>
+                <li><a href="#exp2">Exp 2 — PPO custom</a></li>
+                <li><a href="#exp3">Exp 3 — SAC</a></li>
+                <li><a href="#exp4">Exp 4 — SAC + HER</a></li>
+                <li><a href="#exp5">Exp 5 — HER + clean data</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main id="main">
+        <section id="baseline" class="section" aria-labelledby="baseline-heading">
+            <h2 id="baseline-heading">Random policy baseline results</h2>
+            <h3>Overview</h3>
+            <p>
+                This page presents baseline results for a random policy on robotic manipulation
+                tasks used in the 16-831 course project. The purpose of this baseline is to illustrate
+                the difficulty of the environments and provide a reference point for subsequent
+                reinforcement learning experiments.
+            </p>
+            <h3>Experimental setup</h3>
+            <ul>
+                <li><strong>Environments:</strong> PandaReach, PandaPush, PandaPickAndPlace</li>
+                <li><strong>Policy:</strong> Random</li>
+                <li><strong>Runs:</strong> 3</li>
+                <li><strong>Episodes per run:</strong> 20</li>
+                <li><strong>Metric:</strong> Mean episodic return</li>
+            </ul>
+            <h3>Quantitative results</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Task</th>
+                        <th scope="col">Run 1</th>
+                        <th scope="col">Run 2</th>
+                        <th scope="col">Run 3</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PandaReach</td>
+                        <td>-7.371</td>
+                        <td>-9.279</td>
+                        <td>-7.636</td>
+                    </tr>
+                    <tr>
+                        <td>PandaPush</td>
+                        <td>-8.545</td>
+                        <td>-8.651</td>
+                        <td>-8.566</td>
+                    </tr>
+                    <tr>
+                        <td>PandaPickAndPlace</td>
+                        <td>-8.726</td>
+                        <td>-8.366</td>
+                        <td>-10.878</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="dataset" class="section" aria-labelledby="dataset-heading">
+            <h2 id="dataset-heading">Report 2: problems with the dataset</h2>
+            <p>
+                We observe a major issue in the dataset where some Push and Pick-and-Place episodes
+                initialize objects very close together, causing false success signals. This leads
+                to degenerate policies where the agent learns to remain stationary.
+            </p>
+            <div class="dataset-video-grid">
+                <video controls><source src="videos/dataset/dataset_prob_1.mp4" type="video/mp4"></video>
+                <video controls><source src="videos/dataset/dataset_prob_2.mp4" type="video/mp4"></video>
+                <video controls><source src="videos/dataset/dataset_prob_3.mp4" type="video/mp4"></video>
+            </div>
+        </section>
+
+        <section id="exp1" class="section" aria-labelledby="exp1-heading">
+            <h2 id="exp1-heading">Experiment 1: PPO + dense reward</h2>
+            <p>
+                We trained separate PPO agents on PandaReach, PandaPush, and PandaPickAndPlace
+                using the default dense reward provided by the environment. Different training
+                budgets were allocated (100K, 300K, and 1.5M steps respectively) to account for
+                increasing task complexity.
+            </p>
+            <div class="task-title">Reach</div>
+            <div class="task-grid">
+                <video controls><source src="./videos/PPO/ppo_old_R_1.mp4" type="video/mp4"></video>
+                <video controls><source src="./videos/PPO/ppo_old_R_2.mp4" type="video/mp4"></video>
+                <img src="./videos/PPO/ppo_old_Reach.png" alt="PPO Reach learning curve">
+            </div>
+            <div class="task-title">Push</div>
+            <div class="task-grid">
+                <video controls><source src="./videos/PPO/ppo_old_Push_1.mp4" type="video/mp4"></video>
+                <video controls><source src="./videos/PPO/ppo_old_reach_2.mp4" type="video/mp4"></video>
+                <img src="./videos/PPO/ppo_old_Push.png" alt="PPO Push learning curve">
+            </div>
+            <div class="task-title">Pick &amp; place</div>
+            <div class="task-grid">
+                <video controls><source src="./videos/PPO/ppo_old_PP_1.mp4" type="video/mp4"></video>
+                <video controls><source src="./videos/PPO/ppo_old_PP_2.mp4" type="video/mp4"></video>
+                <img src="./videos/PPO/ppo_old_PP.png" alt="PPO pick and place learning curve">
+            </div>
+            <p class="insight">
+                PPO with dense rewards successfully solves the Reach task reaching 100% success rate. However, performance degrades significantly on Push and Pick &amp; Place achieving only 10% and 5% respectively,
+                highlighting the limitations of relying solely on dense distance-based rewards for
+                long-horizon manipulation tasks.
+            </p>
+        </section>
+
+        <section id="exp2" class="section" aria-labelledby="exp2-heading">
+            <h2 id="exp2-heading">Experiment 2: PPO + custom reward</h2>
+            <p>
+                We trained PPO agents using a custom shaped reward that decomposes the task into
+                intermediate sub-goals:
+                (1) minimizing distance from the end-effector to the object,
+                (2) rewarding first contact with the object,
+                (3) minimizing object-to-target distance,
+                and (4) rewarding successful task completion. This staged reward provides more
+                informative feedback across the trajectory.
+            </p>
+            <div class="task-title">Push</div>
+            <div class="task-grid">
+                <video controls><source src="./videos/PPO/ppo_new_Push_1.mp4" type="video/mp4"></video>
+                <video controls><source src="./videos/PPO/ppo_new_Push_2.mp4" type="video/mp4"></video>
+                <img src="./videos/PPO/ppo_new_Push.png" alt="PPO custom reward Push">
+            </div>
+            <div class="task-title">Pick &amp; place</div>
+            <div class="task-grid">
+                <video controls><source src="./videos/PPO/ppo_new_PP_1.mp4" type="video/mp4"></video>
+                <video controls><source src="./videos/PPO/ppo_new_PP_2.mp4" type="video/mp4"></video>
+                <img src="./videos/PPO/ppo_new_PP.png" alt="PPO custom reward pick and place">
+            </div>
+            <p class="insight">
+                With the custom reward, PPO reliably learns the Reach task and achieves a 100%
+                success rate. While performance on Push and Pick &amp; Place remains limited achieving 4% and 2% success rate respectively, the
+                videos reveal meaningful progress—particularly in the agent consistently moving
+                toward and trying to grab the object. This suggests that the shaped reward improves
+                exploration and credit assignment, although the reward function can be improved which we will carry out in the next report.
+            </p>
+        </section>
+
+        <section id="exp3" class="section" aria-labelledby="exp3-heading">
+            <h2 id="exp3-heading">Experiment 3: SAC (baseline)</h2>
+            <p>
+                We trained separate Soft Actor-Critic (SAC) agents on the all 3 tasks using dense rewards provided by the library.
+            </p>
+            <div class="task-title">Reach</div>
+            <div class="task-grid">
+                <video controls><source src="./videos/SAC/sac_1_reach_!.mp4" type="video/mp4"></video>
+                <video controls><source src="./videos/SAC/sac_1_reach_2.mp4" type="video/mp4"></video>
+                <img src="./videos/SAC/sac_1_reach.png" alt="SAC Reach">
+            </div>
+            <div class="task-title">Push</div>
+            <div class="task-grid">
+                <video controls><source src="./videos/SAC/sac_1_push_1.mp4" type="video/mp4"></video>
+                <video controls><source src="./videos/SAC/sac_1_push_2.mp4" type="video/mp4"></video>
+                <img src="./videos/SAC/sac_1_push.png" alt="SAC Push">
+            </div>
+            <div class="task-title">Pick &amp; place</div>
+            <div class="task-grid">
+                <video controls><source src="./videos/SAC/sac_1_PP_1.mp4" type="video/mp4"></video>
+                <video controls><source src="./videos/SAC/sac_1_PP_2.mp4" type="video/mp4"></video>
+                <img src="./videos/SAC/sac_1_PP.png" alt="SAC pick and place">
+            </div>
+            <p class="insight">
+                SAC demonstrates improved sample efficiency compared to PPO, particularly in
+                the Push task achiving 16% accuracy. However, without additional techniques, it still struggles to
+                solve more complex manipulation tasks such as Pick and Place.
+            </p>
+        </section>
+
+        <section id="exp4" class="section" aria-labelledby="exp4-heading">
+            <h2 id="exp4-heading">Experiment 4: SAC + HER</h2>
+            <p>
+                We augment SAC with Hindsight Experience Replay (HER) with sparse rewards, which relabels failed
+                trajectories as successful by redefining goals post hoc. This is particularly
+                effective in sparse or long-horizon settings.
+            </p>
+            <div class="task-title">Push</div>
+            <div class="task-grid">
+                <video controls><source src="./videos/SAC/sac_2_push_1.mp4" type="video/mp4"></video>
+                <video controls><source src="./videos/SAC/sac_2_push_2.mp4" type="video/mp4"></video>
+                <img src="./videos/SAC/sac_2_push.png" alt="SAC HER Push">
+            </div>
+            <p class="insight">
+                HER significantly enhances performance on Push by optimizing learning from failed attempts. Our initial validation of the SAC + HER pipeline on the Push task yielded a 50% success rate despite the presence of invalid data points. Following this baseline, we scaled the next experiment to include Pick &amp; Place and implemented a data-cleaning step to further improve accuracy.
+            </p>
+        </section>
+
+        <section id="exp5" class="section" aria-labelledby="exp5-heading">
+            <h2 id="exp5-heading">Experiment 5: SAC + HER (improved dataset)</h2>
+            <p>
+                To refine the SAC + HER training, we implemented a manual distance check between blocks within the dataloader. By resetting episodes when blocks are too close, we successfully filtered out erroneous data points that previously degraded performance.
+            </p>
+            <div class="task-title">Push</div>
+            <div class="task-grid">
+                <video controls><source src="./videos/SAC/sac_3_push_1.mp4" type="video/mp4"></video>
+                <video controls><source src="./videos/SAC/sac_3_push_2.mp4" type="video/mp4"></video>
+                <img src="./videos/SAC/soc_3_Push.png" alt="SAC HER improved Push">
+            </div>
+            <div class="task-title">Pick &amp; place</div>
+            <div class="task-grid">
+                <video controls><source src="./videos/SAC/sac_3_PP_1.mp4" type="video/mp4"></video>
+                <video controls><source src="./videos/SAC/sac_3_PP_2.mp4" type="video/mp4"></video>
+                <img src="./videos/SAC/soc_3_PP.png" alt="SAC HER improved pick and place">
+            </div>
+            <p class="insight">
+                SAC + HER reached 89% accuracy on Push/Reach and 48% on Pick and Place, surpassing previous results. The improvement suggests earlier models were negatively reinforced into inactivity by incorrect data points.
+            </p>
+        </section>
+    </main>
+</body>
+</html>
