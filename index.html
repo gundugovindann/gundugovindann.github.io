@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +8,9 @@
         Reinforcement Learning for Robotic Manipulation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --bg: #f4f6f9;
@@ -24,7 +27,9 @@
             --max: 1040px;
         }
 
-        *, *::before, *::after {
+        *,
+        *::before,
+        *::after {
             box-sizing: border-box;
         }
 
@@ -51,6 +56,7 @@
             padding: 0.5rem 1rem;
             z-index: 100;
         }
+
         .skip-link:focus {
             left: 1rem;
             top: 1rem;
@@ -133,6 +139,7 @@
             font-weight: 500;
             font-size: 0.95rem;
         }
+
         .toc a:hover {
             text-decoration: underline;
         }
@@ -211,7 +218,8 @@
             border: 1px solid var(--border);
         }
 
-        th, td {
+        th,
+        td {
             padding: 0.75rem 1rem;
             text-align: center;
             border-bottom: 1px solid var(--border);
@@ -284,6 +292,7 @@
         }
 
         @media (max-width: 768px) {
+
             .task-grid,
             .dataset-video-grid {
                 grid-template-columns: 1fr;
@@ -298,7 +307,8 @@
                 gap: 0.35rem;
             }
 
-            th, td {
+            th,
+            td {
                 padding: 0.5rem 0.4rem;
                 font-size: 0.85rem;
             }
@@ -309,8 +319,167 @@
                 font-size: 0.8rem;
             }
         }
+
+        /* ── New sections ───────────────────────────────── */
+        .plot-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+            align-items: start;
+        }
+
+        .plot-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+            align-items: start;
+        }
+
+        .plot-grid-3 img,
+        .plot-grid-2 img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .plot-stacked {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .plot-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 2rem;
+        }
+
+        .plot-item:last-child {
+            border-bottom: none;
+        }
+
+        .plot-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .plot-description {
+            margin-top: 1rem;
+            color: var(--muted);
+            font-size: 0.95rem;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .plot-caption {
+            font-size: 0.78rem;
+            text-align: center;
+            color: var(--muted);
+            margin: 0.3rem 0 0;
+            font-family: "IBM Plex Mono", monospace;
+        }
+
+        .model-block {
+            margin-top: 2rem;
+            padding: 1.25rem 1.5rem;
+            background: #f8fafc;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+        }
+
+        .model-block-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #1e3a5f;
+            margin: 0 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .model-pill {
+            display: inline-block;
+            padding: 0.15rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .pill-mbrl {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .pill-ppo {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .pill-sac {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .algo-heading {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #1e3a5f;
+            margin: 2rem 0 0.5rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid var(--accent-soft);
+        }
+
+        .vid-wrap video {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            background: #0f172a;
+        }
+
+        .vid-cap {
+            font-size: 0.75rem;
+            text-align: center;
+            color: var(--muted);
+            margin: 0.25rem 0 0;
+            font-family: "IBM Plex Mono", monospace;
+        }
+
+        .vid-cap .ok {
+            color: #16a34a;
+            font-weight: 600;
+        }
+
+        .vid-cap .fail {
+            color: #dc2626;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+
+            .plot-grid-3,
+            .plot-grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
+
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
@@ -319,7 +488,8 @@
             <span class="badge">16-831 · Course project</span>
             <h1>Action Abstractions and Generalization in
                 Reinforcement Learning for Robotic Manipulation</h1>
-            <p>Random policy reference, dataset notes, and PPO / SAC experiments with HER and data cleaning.</p>
+            <p>Random policy reference, dataset notes, PPO / SAC experiments with HER, MBRL results, model ablations,
+                data cleaning and generalization experiments.</p>
         </div>
     </header>
 
@@ -334,6 +504,10 @@
                 <li><a href="#exp3">Exp 3 — SAC</a></li>
                 <li><a href="#exp4">Exp 4 — SAC + HER</a></li>
                 <li><a href="#exp5">Exp 5 — HER + clean data</a></li>
+                <li><a href="#final-results">Final Results</a></li>
+                <li><a href="#mod1">Mod 1 — EE vs Joint</a></li>
+                <li><a href="#mod2">Mod 2 — Dist. Shift</a></li>
+                <li><a href="#video-results">Video Results</a></li>
             </ul>
         </nav>
     </div>
@@ -397,9 +571,15 @@
                 to degenerate policies where the agent learns to remain stationary.
             </p>
             <div class="dataset-video-grid">
-                <video controls><source src="videos/dataset/dataset_prob_1.mp4" type="video/mp4"></video>
-                <video controls><source src="videos/dataset/dataset_prob_2.mp4" type="video/mp4"></video>
-                <video controls><source src="videos/dataset/dataset_prob_3.mp4" type="video/mp4"></video>
+                <video controls>
+                    <source src="videos/dataset/dataset_prob_1.mp4" type="video/mp4">
+                </video>
+                <video controls>
+                    <source src="videos/dataset/dataset_prob_2.mp4" type="video/mp4">
+                </video>
+                <video controls>
+                    <source src="videos/dataset/dataset_prob_3.mp4" type="video/mp4">
+                </video>
             </div>
         </section>
 
@@ -413,24 +593,37 @@
             </p>
             <div class="task-title">Reach</div>
             <div class="task-grid">
-                <video controls><source src="./videos/PPO/ppo_old_R_1.mp4" type="video/mp4"></video>
-                <video controls><source src="./videos/PPO/ppo_old_R_2.mp4" type="video/mp4"></video>
+                <video controls>
+                    <source src="./videos/PPO/ppo_old_R_1.mp4" type="video/mp4">
+                </video>
+                <video controls>
+                    <source src="./videos/PPO/ppo_old_R_2.mp4" type="video/mp4">
+                </video>
                 <img src="./videos/PPO/ppo_old_Reach.png" alt="PPO Reach learning curve">
             </div>
             <div class="task-title">Push</div>
             <div class="task-grid">
-                <video controls><source src="./videos/PPO/ppo_old_Push_1.mp4" type="video/mp4"></video>
-                <video controls><source src="./videos/PPO/ppo_old_reach_2.mp4" type="video/mp4"></video>
+                <video controls>
+                    <source src="./videos/PPO/ppo_old_Push_1.mp4" type="video/mp4">
+                </video>
+                <video controls>
+                    <source src="./videos/PPO/ppo_old_reach_2.mp4" type="video/mp4">
+                </video>
                 <img src="./videos/PPO/ppo_old_Push.png" alt="PPO Push learning curve">
             </div>
             <div class="task-title">Pick &amp; place</div>
             <div class="task-grid">
-                <video controls><source src="./videos/PPO/ppo_old_PP_1.mp4" type="video/mp4"></video>
-                <video controls><source src="./videos/PPO/ppo_old_PP_2.mp4" type="video/mp4"></video>
+                <video controls>
+                    <source src="./videos/PPO/ppo_old_PP_1.mp4" type="video/mp4">
+                </video>
+                <video controls>
+                    <source src="./videos/PPO/ppo_old_PP_2.mp4" type="video/mp4">
+                </video>
                 <img src="./videos/PPO/ppo_old_PP.png" alt="PPO pick and place learning curve">
             </div>
             <p class="insight">
-                PPO with dense rewards successfully solves the Reach task reaching 100% success rate. However, performance degrades significantly on Push and Pick &amp; Place achieving only 10% and 5% respectively,
+                PPO with dense rewards successfully solves the Reach task reaching 100% success rate. However,
+                performance degrades significantly on Push and Pick &amp; Place achieving only 10% and 5% respectively,
                 highlighting the limitations of relying solely on dense distance-based rewards for
                 long-horizon manipulation tasks.
             </p>
@@ -449,46 +642,69 @@
             </p>
             <div class="task-title">Push</div>
             <div class="task-grid">
-                <video controls><source src="./videos/PPO/ppo_new_Push_1.mp4" type="video/mp4"></video>
-                <video controls><source src="./videos/PPO/ppo_new_Push_2.mp4" type="video/mp4"></video>
+                <video controls>
+                    <source src="./videos/PPO/ppo_new_Push_1.mp4" type="video/mp4">
+                </video>
+                <video controls>
+                    <source src="./videos/PPO/ppo_new_Push_2.mp4" type="video/mp4">
+                </video>
                 <img src="./videos/PPO/ppo_new_Push.png" alt="PPO custom reward Push">
             </div>
             <div class="task-title">Pick &amp; place</div>
             <div class="task-grid">
-                <video controls><source src="./videos/PPO/ppo_new_PP_1.mp4" type="video/mp4"></video>
-                <video controls><source src="./videos/PPO/ppo_new_PP_2.mp4" type="video/mp4"></video>
+                <video controls>
+                    <source src="./videos/PPO/ppo_new_PP_1.mp4" type="video/mp4">
+                </video>
+                <video controls>
+                    <source src="./videos/PPO/ppo_new_PP_2.mp4" type="video/mp4">
+                </video>
                 <img src="./videos/PPO/ppo_new_PP.png" alt="PPO custom reward pick and place">
             </div>
             <p class="insight">
                 With the custom reward, PPO reliably learns the Reach task and achieves a 100%
-                success rate. While performance on Push and Pick &amp; Place remains limited achieving 4% and 2% success rate respectively, the
+                success rate. While performance on Push and Pick &amp; Place remains limited achieving 4% and 2% success
+                rate respectively, the
                 videos reveal meaningful progress—particularly in the agent consistently moving
                 toward and trying to grab the object. This suggests that the shaped reward improves
-                exploration and credit assignment, although the reward function can be improved which we will carry out in the next report.
+                exploration and credit assignment, although the reward function can be improved which we will carry out
+                in the next report.
             </p>
         </section>
 
         <section id="exp3" class="section" aria-labelledby="exp3-heading">
             <h2 id="exp3-heading">Experiment 3: SAC (baseline)</h2>
             <p>
-                We trained separate Soft Actor-Critic (SAC) agents on the all 3 tasks using dense rewards provided by the library.
+                We trained separate Soft Actor-Critic (SAC) agents on the all 3 tasks using dense rewards provided by
+                the library.
             </p>
             <div class="task-title">Reach</div>
             <div class="task-grid">
-                <video controls><source src="./videos/SAC/sac_1_reach_!.mp4" type="video/mp4"></video>
-                <video controls><source src="./videos/SAC/sac_1_reach_2.mp4" type="video/mp4"></video>
+                <video controls>
+                    <source src="./videos/SAC/sac_1_reach_!.mp4" type="video/mp4">
+                </video>
+                <video controls>
+                    <source src="./videos/SAC/sac_1_reach_2.mp4" type="video/mp4">
+                </video>
                 <img src="./videos/SAC/sac_1_reach.png" alt="SAC Reach">
             </div>
             <div class="task-title">Push</div>
             <div class="task-grid">
-                <video controls><source src="./videos/SAC/sac_1_push_1.mp4" type="video/mp4"></video>
-                <video controls><source src="./videos/SAC/sac_1_push_2.mp4" type="video/mp4"></video>
+                <video controls>
+                    <source src="./videos/SAC/sac_1_push_1.mp4" type="video/mp4">
+                </video>
+                <video controls>
+                    <source src="./videos/SAC/sac_1_push_2.mp4" type="video/mp4">
+                </video>
                 <img src="./videos/SAC/sac_1_push.png" alt="SAC Push">
             </div>
             <div class="task-title">Pick &amp; place</div>
             <div class="task-grid">
-                <video controls><source src="./videos/SAC/sac_1_PP_1.mp4" type="video/mp4"></video>
-                <video controls><source src="./videos/SAC/sac_1_PP_2.mp4" type="video/mp4"></video>
+                <video controls>
+                    <source src="./videos/SAC/sac_1_PP_1.mp4" type="video/mp4">
+                </video>
+                <video controls>
+                    <source src="./videos/SAC/sac_1_PP_2.mp4" type="video/mp4">
+                </video>
                 <img src="./videos/SAC/sac_1_PP.png" alt="SAC pick and place">
             </div>
             <p class="insight">
@@ -507,36 +723,653 @@
             </p>
             <div class="task-title">Push</div>
             <div class="task-grid">
-                <video controls><source src="./videos/SAC/sac_2_push_1.mp4" type="video/mp4"></video>
-                <video controls><source src="./videos/SAC/sac_2_push_2.mp4" type="video/mp4"></video>
+                <video controls>
+                    <source src="./videos/SAC/sac_2_push_1.mp4" type="video/mp4">
+                </video>
+                <video controls>
+                    <source src="./videos/SAC/sac_2_push_2.mp4" type="video/mp4">
+                </video>
                 <img src="./videos/SAC/sac_2_push.png" alt="SAC HER Push">
             </div>
             <p class="insight">
-                HER significantly enhances performance on Push by optimizing learning from failed attempts. Our initial validation of the SAC + HER pipeline on the Push task yielded a 50% success rate despite the presence of invalid data points. Following this baseline, we scaled the next experiment to include Pick &amp; Place and implemented a data-cleaning step to further improve accuracy.
+                HER significantly enhances performance on Push by optimizing learning from failed attempts. Our initial
+                validation of the SAC + HER pipeline on the Push task yielded a 50% success rate despite the presence of
+                invalid data points. Following this baseline, we scaled the next experiment to include Pick &amp; Place
+                and implemented a data-cleaning step to further improve accuracy.
             </p>
         </section>
 
         <section id="exp5" class="section" aria-labelledby="exp5-heading">
             <h2 id="exp5-heading">Experiment 5: SAC + HER (improved dataset)</h2>
             <p>
-                To refine the SAC + HER training, we implemented a manual distance check between blocks within the dataloader. By resetting episodes when blocks are too close, we successfully filtered out erroneous data points that previously degraded performance.
+                To refine the SAC + HER training, we implemented a manual distance check between blocks within the
+                dataloader. By resetting episodes when blocks are too close, we successfully filtered out erroneous data
+                points that previously degraded performance.
             </p>
             <div class="task-title">Push</div>
             <div class="task-grid">
-                <video controls><source src="./videos/SAC/sac_3_push_1.mp4" type="video/mp4"></video>
-                <video controls><source src="./videos/SAC/sac_3_push_2.mp4" type="video/mp4"></video>
+                <video controls>
+                    <source src="./videos/SAC/sac_3_push_1.mp4" type="video/mp4">
+                </video>
+                <video controls>
+                    <source src="./videos/SAC/sac_3_push_2.mp4" type="video/mp4">
+                </video>
                 <img src="./videos/SAC/sac_3_Push.png" alt="SAC HER improved Push">
             </div>
             <div class="task-title">Pick &amp; place</div>
             <div class="task-grid">
-                <video controls><source src="./videos/SAC/sac_3_PP_1.mp4" type="video/mp4"></video>
-                <video controls><source src="./videos/SAC/sac_3_PP_2.mp4" type="video/mp4"></video>
+                <video controls>
+                    <source src="./videos/SAC/sac_3_PP_1.mp4" type="video/mp4">
+                </video>
+                <video controls>
+                    <source src="./videos/SAC/sac_3_PP_2.mp4" type="video/mp4">
+                </video>
                 <img src="./videos/SAC/soc_3_PP.png" alt="SAC HER improved pick and place">
             </div>
             <p class="insight">
-                SAC + HER reached 89% accuracy on Push/Reach and 48% on Pick and Place, surpassing previous results. The improvement suggests earlier models were negatively reinforced into inactivity by incorrect data points.
+                SAC + HER reached 89% accuracy on Push/Reach and 48% on Pick and Place, surpassing previous results. The
+                improvement suggests earlier models were negatively reinforced into inactivity by incorrect data points.
             </p>
+        </section>
+
+        <!-- ===== FINAL RESULTS: MBRL vs PPO vs SAC ===== -->
+        <section id="final-results" class="section" aria-labelledby="fr-heading">
+            <h2 id="fr-heading">Final Results — MBRL vs PPO vs SAC</h2>
+            <p>Success rate comparison across Model-Based RL (MBRL), PPO, and SAC on all three manipulation tasks.</p>
+
+            <div class="plot-stacked">
+                <div class="plot-item">
+                    <img src="final_report/plots/mod-1/all_agents_Reach.png" alt="All agents Reach">
+                    <p class="plot-caption">Reach success rate comparison</p>
+                    <p class="plot-description">
+                        Reach task being the simplest of the three is mastered by PPO and SAC + HER in both control
+                        methods
+                        whereas MBRL struggled to achieve good performance peaking at a success rate of 70% and not
+                        achieving a 100% success rate at the end of 100k steps.<br>
+                    </p>
+                </div>
+
+                <div class="plot-item">
+                    <img src="final_report/plots/mod-1/all_agents_Push.png" alt="All agents Push">
+                    <p class="plot-caption">Push success rate comparison</p>
+                    <p class="plot-description">
+                        For Push after 150k steps, SAC + HER showed very good progress peaking at 90% for End Effector
+                        control and 75% for Joint control. PPO and MBRL were not able to achieve such high success
+                        rates. On running PPO with the custom reward for 1M steps it was able to succesfully solve the
+                        problem and achieved 100% success rate. Same for SAC as well.
+                    </p>
+                </div>
+
+                <div class="plot-item">
+                    <img src="final_report/plots/mod-1/all_agents_Pick_and_Place.png" alt="All agents Pick and Place">
+                    <p class="plot-caption">Pick &amp; Place success rate comparison</p>
+                    <p class="plot-description">
+                        Being the hardest of the three tasks, SAC + HER was able to achieve near perfect success rate on
+                        End Effector control achieving 100% and 55% success rate on Joint control. PPO on the other hand
+                        struggled even after 3M steps and coudnt get more than 20% success rate. Due to compute
+                        limitations we were unable to run MBRL on Pick and Place alone, thus the results only include
+                        for PPO and SAC + HER.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== MODIFICATION 1: EE vs JOINT ===== -->
+        <section id="mod1" class="section" aria-labelledby="mod1-heading">
+            <h2 id="mod1-heading">Modification 1 — End-Effector vs Joint Control</h2>
+            <p>Comparing success rates of End-Effector (EE) and Joint action spaces across model-free vs model-based
+                agents and across tasks.</p>
+
+            <h3>End-Effector (EE) Action Space</h3>
+            <div class="plot-stacked">
+                <div class="plot-item">
+                    <img src="final_report/plots/mod-1/ee_mf_vs_mb_Reach.png" alt="EE MF vs MB Reach">
+                    <p class="plot-caption">MF vs MB · Reach (EE)</p>
+                    <p class="plot-description">Using End-Effector control simplifies the action space for the Reach
+                        task, allowing both model-free and model-based methods to converge rapidly.</p>
+                </div>
+
+                <div class="plot-item">
+                    <img src="final_report/plots/mod-1/ee_mf_vs_mb_Push.png" alt="EE MF vs MB Push">
+                    <p class="plot-caption">MF vs MB · Push (EE)</p>
+                    <p class="plot-description">For the Push task with EE control, the agent can more easily learn the
+                        relationship between its actions and the movement of the block.</p>
+                </div>
+
+                <div class="plot-item">
+                    <img src="final_report/plots/mod-1/ee_ppo_vs_sac_Pick_and_Place.png"
+                        alt="EE PPO vs SAC Pick and Place">
+                    <p class="plot-caption">PPO vs SAC · Pick &amp; Place (EE)</p>
+                    <p class="plot-description">Even with EE control, Pick &amp; Place remains complex, but the
+                        simplified action space provides a better foundation for learning the grasping sequence.</p>
+                </div>
+            </div>
+
+            <h3>Joint Action Space</h3>
+            <div class="plot-stacked">
+                <div class="plot-item">
+                    <img src="final_report/plots/mod-1/joints_mf_vs_mb_Reach.png" alt="Joints MF vs MB Reach">
+                    <p class="plot-caption">MF vs MB · Reach (Joints)</p>
+                    <p class="plot-description">Joint control adds degrees of freedom, which increases the exploration
+                        difficulty even for the simpler Reach task.</p>
+                </div>
+
+                <div class="plot-item">
+                    <img src="final_report/plots/mod-1/joints_mf_vs_mb_Push.png" alt="Joints MF vs MB Push">
+                    <p class="plot-caption">MF vs MB · Push (Joints)</p>
+                    <p class="plot-description">The Push task becomes significantly harder with joint control, as the
+                        agent must coordinate multiple joints to exert the correct force on the block.</p>
+                </div>
+
+                <div class="plot-item">
+                    <img src="final_report/plots/mod-1/joints_ppo_vs_sac_Pick_and_Place.png"
+                        alt="Joints PPO vs SAC Pick and Place">
+                    <p class="plot-caption">PPO vs SAC · Pick &amp; Place (Joints)</p>
+                    <p class="plot-description">Joint control in Pick &amp; Place represents the highest difficulty
+                        level in our experiments, testing the limits of our reinforcement learning architectures.</p>
+                </div>
+            </div>
+            <p class="insight">
+                General Trends (EE vs Joint): Across all the models End Effector control outperforms Joint control and
+                SAC + HER is also able to succesfully solve Pick and Place after about 1.6M steps unlike SAC + HER Joint
+                space which plateus at around 55% success rate after 3M steps. The return for PPO are positive as we
+                used a custom reward function and not the default panda-gym rewards.
+
+            </p>
+        </section>
+
+        <!-- ===== MODIFICATION 2: DISTRIBUTION SHIFT SWEEPS ===== -->
+        <section id="mod2" class="section" aria-labelledby="mod2-heading">
+            <h2 id="mod2-heading">Modification 2 — Distribution Shift Sweeps (1-D &amp; 2-D)</h2>
+            <p>Evaluating robustness under distribution shift. 1-D sweeps show in-distribution vs out-of-distribution
+                success rates. 2-D heatmaps show the full sweep landscape per model.</p>
+
+            <h3>1-D Sweep — ID vs OOD</h3>
+            <div class="plot-grid-3">
+                <div><img src="final_report/plots/mod-2/id_vs_ood_Reach.png" alt="ID vs OOD Reach">
+                    <p class="plot-caption">Reach</p>
+                </div>
+                <div><img src="final_report/plots/mod-2/id_vs_ood_Push.png" alt="ID vs OOD Push">
+                    <p class="plot-caption">Push</p>
+                </div>
+                <div><img src="final_report/plots/mod-2/id_vs_ood_Pick_and_Place.png" alt="ID vs OOD Pick and Place">
+                    <p class="plot-caption">Pick &amp; Place</p>
+                </div>
+            </div>
+
+            <h3>1-D Shift Curves</h3>
+            <div class="plot-grid-3">
+                <div><img src="final_report/plots/mod-2/shift_curve_Reach.png" alt="Shift curve Reach">
+                    <p class="plot-caption">Reach</p>
+                </div>
+                <div><img src="final_report/plots/mod-2/shift_curve_Push.png" alt="Shift curve Push">
+                    <p class="plot-caption">Push</p>
+                </div>
+                <div><img src="final_report/plots/mod-2/shift_curve_Pick_and_Place.png"
+                        alt="Shift curve Pick and Place">
+                    <p class="plot-caption">Pick &amp; Place</p>
+                </div>
+            </div>
+
+            <h3>2-D Shift Heatmaps</h3>
+
+            <p class="task-title">MB-EE</p>
+            <div class="plot-grid-2">
+                <div><img src="final_report/plots/mod-2/shift_heatmap_MB-EE_Push.png" alt="MB-EE Push heatmap">
+                    <p class="plot-caption">MB-EE · Push</p>
+                </div>
+                <div><img src="final_report/plots/mod-2/shift_heatmap_MB-EE_Reach.png" alt="MB-EE Reach heatmap">
+                    <p class="plot-caption">MB-EE · Reach</p>
+                </div>
+            </div>
+            <p class="task-title">MB-Joints</p>
+            <div class="plot-grid-2">
+                <div><img src="final_report/plots/mod-2/shift_heatmap_MB-Joints_Push.png" alt="MB-Joints Push heatmap">
+                    <p class="plot-caption">MB-Joints · Push</p>
+                </div>
+                <div><img src="final_report/plots/mod-2/shift_heatmap_MB-Joints_Reach.png"
+                        alt="MB-Joints Reach heatmap">
+                    <p class="plot-caption">MB-Joints · Reach</p>
+                </div>
+            </div>
+            <p class="task-title">PPO-EE</p>
+            <div class="plot-grid-3">
+                <div><img src="final_report/plots/mod-2/shift_heatmap_PPO-EE_Reach.png" alt="PPO-EE Reach heatmap">
+                    <p class="plot-caption">PPO-EE · Reach</p>
+                </div>
+                <div><img src="final_report/plots/mod-2/shift_heatmap_PPO-EE_Push.png" alt="PPO-EE Push heatmap">
+                    <p class="plot-caption">PPO-EE · Push</p>
+                </div>
+                <div><img src="final_report/plots/mod-2/shift_heatmap_PPO-EE_Pick_and_Place.png"
+                        alt="PPO-EE Pick and Place heatmap">
+                    <p class="plot-caption">PPO-EE · Pick &amp; Place</p>
+                </div>
+            </div>
+            <p class="task-title">PPO-Joints</p>
+            <div class="plot-grid-3">
+                <div><img src="final_report/plots/mod-2/shift_heatmap_PPO-Joints_Reach.png"
+                        alt="PPO-Joints Reach heatmap">
+                    <p class="plot-caption">PPO-Joints · Reach</p>
+                </div>
+                <div><img src="final_report/plots/mod-2/shift_heatmap_PPO-Joints_Push.png"
+                        alt="PPO-Joints Push heatmap">
+                    <p class="plot-caption">PPO-Joints · Push</p>
+                </div>
+                <div><img src="final_report/plots/mod-2/shift_heatmap_PPO-Joints_Pick_and_Place.png"
+                        alt="PPO-Joints Pick and Place heatmap">
+                    <p class="plot-caption">PPO-Joints · Pick &amp; Place</p>
+                </div>
+            </div>
+            <p class="task-title">SAC-EE</p>
+            <div class="plot-grid-3">
+                <div><img src="final_report/plots/mod-2/shift_heatmap_SAC-EE_Reach.png" alt="SAC-EE Reach heatmap">
+                    <p class="plot-caption">SAC-EE · Reach</p>
+                </div>
+                <div><img src="final_report/plots/mod-2/shift_heatmap_SAC-EE_Push.png" alt="SAC-EE Push heatmap">
+                    <p class="plot-caption">SAC-EE · Push</p>
+                </div>
+                <div><img src="final_report/plots/mod-2/shift_heatmap_SAC-EE_Pick_and_Place.png"
+                        alt="SAC-EE Pick and Place heatmap">
+                    <p class="plot-caption">SAC-EE · Pick &amp; Place</p>
+                </div>
+            </div>
+            <p class="task-title">SAC-Joints</p>
+            <div class="plot-grid-3">
+                <div><img src="final_report/plots/mod-2/shift_heatmap_SAC-Joints_Reach.png"
+                        alt="SAC-Joints Reach heatmap">
+                    <p class="plot-caption">SAC-Joints · Reach</p>
+                </div>
+                <div><img src="final_report/plots/mod-2/shift_heatmap_SAC-Joints_Push.png"
+                        alt="SAC-Joints Push heatmap">
+                    <p class="plot-caption">SAC-Joints · Push</p>
+                </div>
+                <div><img src="final_report/plots/mod-2/shift_heatmap_SAC-Joints_Pick_and_Place.png"
+                        alt="SAC-Joints Pick and Place heatmap">
+                    <p class="plot-caption">SAC-Joints · Pick &amp; Place</p>
+                </div>
+            </div>
+            <p class="insight">
+                General Trends (Distribution Shift): All the models were trained with a distance distribution of max
+                0.15 and were tested on a range of 0.08 to 0.25 across 1D and 2D distance distributions and we can
+                observe that most models dont perform well when object is placed further away and performed the worst at
+                0.25 distance and performed the best when the object was the closest i.e., 0.08. This is expected as the
+                models were trained with a maximum distance of 0.15 and are not able to extrapolate to larger distances.
+
+            </p>
+        </section>
+
+        <!-- ===== VIDEO RESULTS ===== -->
+        <section id="video-results" class="section" aria-labelledby="vr-heading">
+            <h2 id="vr-heading">Video Results</h2>
+            <p>Rollout episodes organised by algorithm family, action-space variant, and task. Episode outcome is
+                labelled on each clip.</p>
+
+            <!-- PPO -->
+            <p class="algo-heading">PPO — Proximal Policy Optimization</p>
+
+            <div class="model-block">
+                <p class="model-block-title">PPO-EE <span class="model-pill pill-ppo">End-Effector</span></p>
+                <div class="task-title">Pick &amp; Place</div>
+                <div class="task-grid">
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/PPO-EE/PP/PPO-EE_Pick_%26_Place_ep05_FAILED.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep05 · <span class="fail">FAILED</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/PPO-EE/PP/PPO-EE_Pick_%26_Place_ep15_FAILED.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep15 · <span class="fail">FAILED</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/PPO-EE/PP/PPO-EE_Pick_%26_Place_ep16_FAILED.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep16 · <span class="fail">FAILED</span></p>
+                    </div>
+                </div>
+                <div class="task-title">Push</div>
+                <div class="task-grid">
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/PPO-EE/Push/PPO-EE_Push_ep00_FAILED.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep00 · <span class="fail">FAILED</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/PPO-EE/Push/PPO-EE_Push_ep11_FAILED.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep11 · <span class="fail">FAILED</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/PPO-EE/Push/PPO-EE_Push_ep13_FAILED.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep13 · <span class="fail">FAILED</span></p>
+                    </div>
+                </div>
+                <div class="task-title">Reach</div>
+                <div class="task-grid">
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/PPO-EE/Reach/PPO-EE_Reach_ep00_SUCCESS.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep00 · <span class="ok">SUCCESS</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/PPO-EE/Reach/PPO-EE_Reach_ep01_SUCCESS.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep01 · <span class="ok">SUCCESS</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/PPO-EE/Reach/PPO-EE_Reach_ep04_SUCCESS.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep04 · <span class="ok">SUCCESS</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="model-block">
+                <p class="model-block-title">PPO-Joint <span class="model-pill pill-ppo">Joint Control</span></p>
+                <div class="task-title">Pick &amp; Place</div>
+                <div class="task-grid">
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/PPO-Joint/PP/PPO-Joints_Pick_%26_Place_ep02_FAILED.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep02 · <span class="fail">FAILED</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/PPO-Joint/PP/PPO-Joints_Pick_%26_Place_ep06_FAILED.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep06 · <span class="fail">FAILED</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/PPO-Joint/PP/PPO-Joints_Pick_%26_Place_ep12_FAILED.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep12 · <span class="fail">FAILED</span></p>
+                    </div>
+                </div>
+                <div class="task-title">Push</div>
+                <div class="task-grid">
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/PPO-Joint/Push/PPO-Joints_Push_ep07_FAILED.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep07 · <span class="fail">FAILED</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/PPO-Joint/Push/PPO-Joints_Push_ep14_FAILED.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep14 · <span class="fail">FAILED</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/PPO-Joint/Push/PPO-Joints_Push_ep15_FAILED.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep15 · <span class="fail">FAILED</span></p>
+                    </div>
+                </div>
+                <div class="task-title">Reach</div>
+                <div class="task-grid">
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/PPO-Joint/Reach/PPO-Joints_Reach_ep12_SUCCESS.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep12 · <span class="ok">SUCCESS</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/PPO-Joint/Reach/PPO-Joints_Reach_ep16_SUCCESS.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep16 · <span class="ok">SUCCESS</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/PPO-Joint/Reach/PPO-Joints_Reach_ep17_SUCCESS.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep17 · <span class="ok">SUCCESS</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SAC -->
+            <p class="algo-heading">SAC — Soft Actor-Critic</p>
+
+            <div class="model-block">
+                <p class="model-block-title">SAC-EE <span class="model-pill pill-sac">End-Effector</span></p>
+                <div class="task-title">Pick &amp; Place</div>
+                <div class="task-grid">
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/SAC-EE/PP/SAC-EE_Pick_%26_Place_ep00_SUCCESS.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep00 · <span class="ok">SUCCESS</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/SAC-EE/PP/SAC-EE_Pick_%26_Place_ep01_SUCCESS.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep01 · <span class="ok">SUCCESS</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/SAC-EE/PP/SAC-EE_Pick_%26_Place_ep03_SUCCESS.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep03 · <span class="ok">SUCCESS</span></p>
+                    </div>
+                </div>
+                <div class="task-title">Push</div>
+                <div class="task-grid">
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/SAC-EE/Push/SAC-EE_Push_ep00_SUCCESS.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep00 · <span class="ok">SUCCESS</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/SAC-EE/Push/SAC-EE_Push_ep02_SUCCESS.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep02 · <span class="ok">SUCCESS</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/SAC-EE/Push/SAC-EE_Push_ep04_SUCCESS.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep04 · <span class="ok">SUCCESS</span></p>
+                    </div>
+                </div>
+                <div class="task-title">Reach</div>
+                <div class="task-grid">
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/SAC-EE/Reach/SAC-EE_Reach_ep00_SUCCESS.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep00 · <span class="ok">SUCCESS</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/SAC-EE/Reach/SAC-EE_Reach_ep01_SUCCESS.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep01 · <span class="ok">SUCCESS</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/SAC-EE/Reach/SAC-EE_Reach_ep02_SUCCESS.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep02 · <span class="ok">SUCCESS</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="model-block">
+                <p class="model-block-title">SAC-Joint <span class="model-pill pill-sac">Joint Control</span></p>
+                <div class="task-title">Pick &amp; Place</div>
+                <div class="task-grid">
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/SAC-Joint/PP/SAC-Joints_Pick_%26_Place_ep00_FAILED.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep00 · <span class="fail">FAILED</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/SAC-Joint/PP/SAC-Joints_Pick_%26_Place_ep02_SUCCESS.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep02 · <span class="ok">SUCCESS</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/SAC-Joint/PP/SAC-Joints_Pick_%26_Place_ep04_SUCCESS.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep04 · <span class="ok">SUCCESS</span></p>
+                    </div>
+                </div>
+                <div class="task-title">Push</div>
+                <div class="task-grid">
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/SAC-Joint/Push/SAC-Joints_Push_ep04_SUCCESS.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep04 · <span class="ok">SUCCESS</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/SAC-Joint/Push/SAC-Joints_Push_ep05_SUCCESS.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep05 · <span class="ok">SUCCESS</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/SAC-Joint/Push/SAC-Joints_Push_ep06_SUCCESS.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep06 · <span class="ok">SUCCESS</span></p>
+                    </div>
+                </div>
+                <div class="task-title">Reach</div>
+                <div class="task-grid">
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/SAC-Joint/Reach/SAC-Joints_Reach_ep02_SUCCESS.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep02 · <span class="ok">SUCCESS</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/SAC-Joint/Reach/SAC-Joints_Reach_ep06_SUCCESS.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep06 · <span class="ok">SUCCESS</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/SAC-Joint/Reach/SAC-Joints_Reach_ep11_SUCCESS.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep11 · <span class="ok">SUCCESS</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="algo-heading">MBRL — Model-Based Reinforcement Learning</p>
+
+            <div class="model-block">
+                <p class="model-block-title">MB-EE <span class="model-pill pill-mbrl">End-Effector</span></p>
+                <div class="task-title">Push</div>
+                <div class="task-grid">
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/MB-EE/Push/MB-EE_Push_ep01_FAILED.mp4" type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep01 · <span class="fail">FAILED</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/MB-EE/Push/MB-EE_Push_ep05_FAILED.mp4" type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep05 · <span class="fail">FAILED</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/MB-EE/Push/MB-EE_Push_ep16_FAILED.mp4" type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep16 · <span class="fail">FAILED</span></p>
+                    </div>
+                </div>
+                <div class="task-title">Reach</div>
+                <div class="task-grid">
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/MB-EE/Reach/MB-EE_Reach_ep06_FAILED.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep06 · <span class="fail">FAILED</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/MB-EE/Reach/MB-EE_Reach_ep10_FAILED.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep10 · <span class="fail">FAILED</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/MB-EE/Reach/MB-EE_Reach_ep19_FAILED.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep19 · <span class="fail">FAILED</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="model-block">
+                <p class="model-block-title">MB-Joint <span class="model-pill pill-mbrl">Joint Control</span></p>
+                <div class="task-title">Push</div>
+                <div class="task-grid">
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/MB-Joint/Push/MB-Joints_Push_ep06_FAILED.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep06 · <span class="fail">FAILED</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/MB-Joint/Push/MB-Joints_Push_ep12_FAILED.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep12 · <span class="fail">FAILED</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/MB-Joint/Push/MB-Joints_Push_ep15_FAILED.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep15 · <span class="fail">FAILED</span></p>
+                    </div>
+                </div>
+                <div class="task-title">Reach</div>
+                <div class="task-grid">
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/MB-Joint/Reach/MB-Joints_Reach_ep02_FAILED.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep02 · <span class="fail">FAILED</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/MB-Joint/Reach/MB-Joints_Reach_ep14_FAILED.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep14 · <span class="fail">FAILED</span></p>
+                    </div>
+                    <div class="vid-wrap"><video controls>
+                            <source src="final_report/vid_final/MB-Joint/Reach/MB-Joints_Reach_ep17_FAILED.mp4"
+                                type="video/mp4">
+                        </video>
+                        <p class="vid-cap">ep17 · <span class="fail">FAILED</span></p>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 </body>
+
 </html>
